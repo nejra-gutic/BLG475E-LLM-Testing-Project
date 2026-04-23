@@ -695,6 +695,145 @@ class Solution {
 
 ---
 
+# Task Java/6 - parseNestedParens
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="5kvt7d"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parseNestedParens("(()()) ((())) () ((())()())")
+    [2, 3, 1, 3]
+     */
+    public List<Integer> parseNestedParens(String paren_string) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="2m8y8v"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parseNestedParens("(()()) ((())) () ((())()())")
+    [2, 3, 1, 3]
+     */
+    public List<Integer> parseNestedParens(String paren_string) {
+        List<Integer> result = new ArrayList<>();
+        String[] groups = paren_string.trim().split("\\s+");
+
+        for (String group : groups) {
+            int depth = 0;
+            int maxDepth = 0;
+
+            for (int i = 0; i < group.length(); i++) {
+                char c = group.charAt(i);
+
+                if (c == '(') {
+                    depth++;
+                    maxDepth = Math.max(maxDepth, depth);
+                } else if (c == ')') {
+                    depth--;
+                }
+            }
+
+            result.add(maxDepth);
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses trim and regex-based splitting for space handling
+
+---
+
+## Gemini Response
+
+```java id="bjlwm8"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input to this function is a string represented multiple groups for nested parentheses separated by spaces.
+    For each of the group, output the deepest level of nesting of parentheses.
+    E.g. (()()) has maximum two levels of nesting while ((())) has three.
+
+    >>> parseNestedParens("(()()) ((())) () ((())()())")
+    [2, 3, 1, 3]
+     */
+    public List<Integer> parseNestedParens(String paren_string) {
+        List<Integer> result = new ArrayList<>();
+        String[] groups = paren_string.split("\\s+");
+
+        for (String group : groups) {
+            if (group.isEmpty()) {
+                continue;
+            }
+
+            int currentDepth = 0;
+            int maxDepth = 0;
+
+            for (char c : group.toCharArray()) {
+                if (c == '(') {
+                    currentDepth++;
+
+                    if (currentDepth > maxDepth) {
+                        maxDepth = currentDepth;
+                    }
+                } else if (c == ')') {
+                    currentDepth--;
+                }
+            }
+
+            result.add(maxDepth);
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses explicit empty-group handling and enhanced for-loop iteration
+
+---
+
+
 
 
 
