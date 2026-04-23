@@ -456,6 +456,133 @@ class Solution {
 
 ---
 
+# Task Java/4 - meanAbsoluteDeviation
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="kqn7po"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> meanAbsoluteDeviation(Arrays.asList(1.0, 2.0, 3.0, 4.0))
+    1.0
+     */
+    public double meanAbsoluteDeviation(List<Double> numbers) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="7rf5qw"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> meanAbsoluteDeviation(Arrays.asList(1.0, 2.0, 3.0, 4.0))
+    1.0
+     */
+    public double meanAbsoluteDeviation(List<Double> numbers) {
+        double sum = 0.0;
+
+        for (double num : numbers) {
+            sum += num;
+        }
+
+        double mean = sum / numbers.size();
+
+        double deviationSum = 0.0;
+
+        for (double num : numbers) {
+            deviationSum += Math.abs(num - mean);
+        }
+
+        return deviationSum / numbers.size();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses two-pass calculation for mean and deviation
+
+---
+
+## Gemini Response
+
+```java id="5hfwqf"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given list of input numbers, calculate Mean Absolute Deviation
+    around the mean of this dataset.
+    Mean Absolute Deviation is the average absolute difference between each
+    element and a centerpoint (mean in this case):
+    MAD = average | x - x_mean |
+    >>> meanAbsoluteDeviation(Arrays.asList(1.0, 2.0, 3.0, 4.0))
+    1.0
+    */
+    public double meanAbsoluteDeviation(List<Double> numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            return 0.0;
+        }
+
+        double sum = 0.0;
+
+        for (double n : numbers) {
+            sum += n;
+        }
+
+        double mean = sum / numbers.size();
+
+        double absoluteDeviationSum = 0.0;
+
+        for (double n : numbers) {
+            absoluteDeviationSum += Math.abs(n - mean);
+        }
+
+        return absoluteDeviationSum / numbers.size();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes additional null and empty-list handling
+
+---
+
+
 # Task Java/5 - intersperse
 
 ## Prompt
