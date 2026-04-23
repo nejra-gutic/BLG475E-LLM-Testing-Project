@@ -1157,6 +1157,1187 @@ class Solution {
 
 ---
 
+# Task Java/10 - makePalindrome
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Test if given string is a palindrome
+     */
+    public boolean isPalindrome(String string) {
+        int i = 0;
+        int j = string.length() - 1;
+        while (i < j) {
+            if (string.charAt(i) != string.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    /**
+    Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> makePalindrome("")
+    ""
+    >>> makePalindrome("cat")
+    "catac"
+    >>> makePalindrome("cata")
+    "catac"
+     */
+    public String makePalindrome(String string) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Test if given string is a palindrome
+     */
+    public boolean isPalindrome(String string) {
+        int i = 0;
+        int j = string.length() - 1;
+        while (i < j) {
+            if (string.charAt(i) != string.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    /**
+    Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> makePalindrome("")
+    ""
+    >>> makePalindrome("cat")
+    "catac"
+    >>> makePalindrome("cata")
+    "catac"
+     */
+    public String makePalindrome(String string) {
+        for (int i = 0; i < string.length(); i++) {
+            String suffix = string.substring(i);
+            if (isPalindrome(suffix)) {
+                String prefix = string.substring(0, i);
+                StringBuilder result = new StringBuilder(string);
+                result.append(new StringBuilder(prefix).reverse());
+                return result.toString();
+            }
+        }
+        return string;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Searches for the first palindromic suffix and appends the reversed prefix
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Test if given string is a palindrome
+    */
+    public boolean isPalindrome(String string) {
+        int i = 0;
+        int j = string.length() - 1;
+        while (i < j) {
+            if (string.charAt(i) != string.charAt(j)) {
+                return false;
+            }
+            i++;
+            j--;
+        }
+        return true;
+    }
+
+    /**
+    Find the shortest palindrome that begins with a supplied string.
+    Algorithm idea is simple:
+    - Find the longest postfix of supplied string that is a palindrome.
+    - Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+    >>> makePalindrome("")
+    ""
+    >>> makePalindrome("cat")
+    "catac"
+    >>> makePalindrome("cata")
+    "catac"
+     */
+    public String makePalindrome(String string) {
+        if (string == null || string.isEmpty()) {
+            return "";
+        }
+
+        int n = string.length();
+        int longestPalindromeSuffixStart = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (isPalindrome(string.substring(i))) {
+                longestPalindromeSuffixStart = i;
+                break;
+            }
+        }
+
+        String prefixToReverse = string.substring(0, longestPalindromeSuffixStart);
+        StringBuilder reversePrefix = new StringBuilder(prefixToReverse).reverse();
+
+        return string + reversePrefix.toString();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes additional null and empty-string handling
+
+---
+# Task Java/11 - stringXor
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> stringXor("010", "110")
+    "100"
+     */
+    public String stringXor(String a, String b) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> stringXor("010", "110")
+    "100"
+     */
+    public String stringXor(String a, String b) {
+        StringBuilder result = new StringBuilder();
+
+        for (int i = 0; i < a.length(); i++) {
+            if (a.charAt(i) == b.charAt(i)) {
+                result.append('0');
+            } else {
+                result.append('1');
+            }
+        }
+
+        return result.toString();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses direct character-by-character XOR comparison
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input are two strings a and b consisting only of 1s and 0s.
+    Perform binary XOR on these inputs and return result also as a string.
+    >>> stringXor("010", "110")
+    "100"
+    */
+    public String stringXor(String a, String b) {
+        StringBuilder result = new StringBuilder();
+        int length = a.length();
+
+        for (int i = 0; i < length; i++) {
+            if (a.charAt(i) == b.charAt(i)) {
+                result.append('0');
+            } else {
+                result.append('1');
+            }
+        }
+
+        return result.toString();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Stores input length separately before iteration
+
+---
+# Task Java/12 - longest
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest(List.of())
+    Optional.empty
+    >>> longest(Arrays.asList("a", "b", "c"))
+    Optional[a]
+    >>> longest(Arrays.asList("a", "bb", "ccc"))
+    Optional[ccc]
+     */
+    public Optional<String> longest(List<String> strings) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest(List.of())
+    Optional.empty
+    >>> longest(Arrays.asList("a", "b", "c"))
+    Optional[a]
+    >>> longest(Arrays.asList("a", "bb", "ccc"))
+    Optional[ccc]
+     */
+    public Optional<String> longest(List<String> strings) {
+        if (strings.isEmpty()) {
+            return Optional.empty();
+        }
+
+        String longest = strings.get(0);
+
+        for (String s : strings) {
+            if (s.length() > longest.length()) {
+                longest = s;
+            }
+        }
+
+        return Optional.of(longest);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses enhanced for-loop to track longest string
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Out of list of strings, return the longest one. Return the first one in case of multiple
+    strings of the same length. Return None in case the input list is empty.
+    >>> longest(List.of())
+    Optional.empty
+    >>> longest(Arrays.asList("a", "b", "c"))
+    Optional[a]
+    >>> longest(Arrays.asList("a", "bb", "ccc"))
+    Optional[ccc]
+    */
+    public Optional<String> longest(List<String> strings) {
+        if (strings == null || strings.isEmpty()) {
+            return Optional.empty();
+        }
+
+        String longestStr = strings.get(0);
+
+        for (int i = 1; i < strings.size(); i++) {
+            if (strings.get(i).length() > longestStr.length()) {
+                longestStr = strings.get(i);
+            }
+        }
+
+        return Optional.of(longestStr);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes null-check and index-based iteration
+
+---
+# Task Java/13 - greatestCommonDivisor
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="0jlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return a greatest common divisor of two integers a and b
+    >>> greatestCommonDivisor(3, 5)
+    1
+    >>> greatestCommonDivisor(25, 15)
+    5
+     */
+    public int greatestCommonDivisor(int a, int b) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="8jlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return a greatest common divisor of two integers a and b
+    >>> greatestCommonDivisor(3, 5)
+    1
+    >>> greatestCommonDivisor(25, 15)
+    5
+     */
+    public int greatestCommonDivisor(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return Math.abs(a);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses iterative Euclidean algorithm with absolute value handling
+
+---
+
+## Gemini Response
+
+```java id="xjlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return a greatest common divisor of two integers a and b
+    >>> greatestCommonDivisor(3, 5)
+    1
+    >>> greatestCommonDivisor(25, 15)
+    5
+    */
+    public int greatestCommonDivisor(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+
+        return a;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses iterative Euclidean algorithm without absolute value normalization
+
+---
+# Task Java/14 - allPrefixes
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jdbsxt"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of all prefixes from shortest to longest of the input string
+    >>> allPrefixes("abc")
+    ["a", "ab", "abc"]
+     */
+    public List<String> allPrefixes(String string) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="qwe1u4"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of all prefixes from shortest to longest of the input string
+    >>> allPrefixes("abc")
+    ["a", "ab", "abc"]
+     */
+    public List<String> allPrefixes(String string) {
+        List<String> result = new ArrayList<>();
+
+        for (int i = 1; i <= string.length(); i++) {
+            result.add(string.substring(0, i));
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses iterative substring generation
+
+---
+
+## Gemini Response
+
+```java id="jlwm5x"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of all prefixes from shortest to longest of the input string
+    >>> allPrefixes("abc")
+    ["a", "ab", "abc"]
+    */
+    public List<String> allPrefixes(String string) {
+        List<String> result = new ArrayList<>();
+
+        if (string == null || string.isEmpty()) {
+            return result;
+        }
+
+        for (int i = 1; i <= string.length(); i++) {
+            result.add(string.substring(0, i));
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes additional null and empty-string handling
+
+---
+# Task Java/16 - countDistinctCharacters
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm3v"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> countDistinctCharacters("xyzXYZ")
+    3
+    >>> countDistinctCharacters("Jerry")
+    4
+     */
+    public int countDistinctCharacters(String string) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm4b"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> countDistinctCharacters("xyzXYZ")
+    3
+    >>> countDistinctCharacters("Jerry")
+    4
+     */
+    public int countDistinctCharacters(String string) {
+        Set<Character> distinct = new HashSet<>();
+
+        for (int i = 0; i < string.length(); i++) {
+            distinct.add(Character.toLowerCase(string.charAt(i)));
+        }
+
+        return distinct.size();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses HashSet with character-by-character lowercase conversion
+
+---
+
+## Gemini Response
+
+```java id="jlwm7c"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Given a string, find out how many distinct characters (regardless of case) does it consist of
+    >>> countDistinctCharacters("xyzXYZ")
+    3
+    >>> countDistinctCharacters("Jerry")
+    4
+    */
+    public int countDistinctCharacters(String string) {
+        if (string == null || string.isEmpty()) {
+            return 0;
+        }
+
+        Set<Character> distinctChars = new HashSet<>();
+
+        for (char c : string.toLowerCase().toCharArray()) {
+            distinctChars.add(c);
+        }
+
+        return distinctChars.size();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes null and empty-string handling with lowercase preprocessing
+
+---
+# Task Java/18 - howManyTimes
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm6l"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> howManyTimes("", "a")
+    0
+    >>> howManyTimes("aaa", "a")
+    3
+    >>> howManyTimes("aaaa", "aa")
+    3
+     */
+    public int howManyTimes(String string, String substring) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm7b"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> howManyTimes("", "a")
+    0
+    >>> howManyTimes("aaa", "a")
+    3
+    >>> howManyTimes("aaaa", "aa")
+    3
+     */
+    public int howManyTimes(String string, String substring) {
+        if (substring.length() == 0 || string.length() == 0 || substring.length() > string.length()) {
+            return 0;
+        }
+
+        int count = 0;
+
+        for (int i = 0; i <= string.length() - substring.length(); i++) {
+            if (string.substring(i, i + substring.length()).equals(substring)) {
+                count++;
+            }
+        }
+
+        return count;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses sliding-window substring comparison with overlap support
+
+---
+
+## Gemini Response
+
+```java id="jlwm1m"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Find how many times a given substring can be found in the original string. Count overlaping cases.
+    >>> howManyTimes("", "a")
+    0
+    >>> howManyTimes("aaa", "a")
+    3
+    >>> howManyTimes("aaaa", "aa")
+    3
+    */
+    public int howManyTimes(String string, String substring) {
+        if (string == null || substring == null || substring.isEmpty()) {
+            return 0;
+        }
+
+        int count = 0;
+        int index = 0;
+
+        while ((index = string.indexOf(substring, index)) != -1) {
+            count++;
+            index++;
+        }
+
+        return count;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses indexOf with shifting index to count overlapping occurrences
+
+---
+
+# Task Java/19 - sortNumbers
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm4o"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sortNumbers("three one five")
+    "one three five"
+     */
+    public String sortNumbers(String numbers) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm1q"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sortNumbers("three one five")
+    "one three five"
+     */
+    public String sortNumbers(String numbers) {
+        if (numbers == null || numbers.trim().isEmpty()) {
+            return "";
+        }
+
+        Map<String, Integer> values = new HashMap<>();
+        values.put("zero", 0);
+        values.put("one", 1);
+        values.put("two", 2);
+        values.put("three", 3);
+        values.put("four", 4);
+        values.put("five", 5);
+        values.put("six", 6);
+        values.put("seven", 7);
+        values.put("eight", 8);
+        values.put("nine", 9);
+
+        List<String> nums = new ArrayList<>(Arrays.asList(numbers.split(" ")));
+
+        nums.sort(Comparator.comparingInt(values::get));
+
+        return String.join(" ", nums);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses HashMap and Comparator.comparingInt for sorting
+
+---
+
+## Gemini Response
+
+```java id="jlwm0c"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input is a space-delimited string of numberals from 'zero' to 'nine'.
+    Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+    Return the string with numbers sorted from smallest to largest
+    >>> sortNumbers("three one five")
+    "one three five"
+    */
+    public String sortNumbers(String numbers) {
+        if (numbers == null || numbers.isEmpty()) {
+            return "";
+        }
+
+        Map<String, Integer> valueMap = new HashMap<>();
+        valueMap.put("zero", 0);
+        valueMap.put("one", 1);
+        valueMap.put("two", 2);
+        valueMap.put("three", 3);
+        valueMap.put("four", 4);
+        valueMap.put("five", 5);
+        valueMap.put("six", 6);
+        valueMap.put("seven", 7);
+        valueMap.put("eight", 8);
+        valueMap.put("nine", 9);
+
+        String[] parts = numbers.split("\\s+");
+
+        Arrays.sort(parts, new Comparator<String>() {
+            @Override
+            public int compare(String s1, String s2) {
+                return valueMap.get(s1) - valueMap.get(s2);
+            }
+        });
+
+        return String.join(" ", parts);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses explicit Comparator implementation with Arrays.sort
+
+---
+# Task Java/20 - findClosestElements
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="7jlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.2))
+    [2.0, 2.2]
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.0))
+    [2.0, 2.0]
+     */
+    public List<Double> findClosestElements(List<Double> numbers) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="9jlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.2))
+    [2.0, 2.2]
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.0))
+    [2.0, 2.0]
+     */
+    public List<Double> findClosestElements(List<Double> numbers) {
+        List<Double> sorted = new ArrayList<>(numbers);
+        Collections.sort(sorted);
+
+        double minDiff = Double.MAX_VALUE;
+        double first = sorted.get(0);
+        double second = sorted.get(1);
+
+        for (int i = 0; i < sorted.size() - 1; i++) {
+            double diff = sorted.get(i + 1) - sorted.get(i);
+
+            if (diff < minDiff) {
+                minDiff = diff;
+                first = sorted.get(i);
+                second = sorted.get(i + 1);
+            }
+        }
+
+        return Arrays.asList(first, second);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses sorting and adjacent comparison optimization
+
+---
+
+## Gemini Response
+
+```java id="11jlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a supplied list of numbers (of length at least two) select and return two that are the closest to each
+    other and return them in order (smaller number, larger number).
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.2))
+    [2.0, 2.2]
+    >>> findClosestElements(Arrays.asList(1.0, 2.0, 3.0, 4.0, 5.0, 2.0))
+    [2.0, 2.0]
+    */
+    public List<Double> findClosestElements(List<Double> numbers) {
+        List<Double> sortedNumbers = new ArrayList<>(numbers);
+        Collections.sort(sortedNumbers);
+
+        double minDiff = Double.MAX_VALUE;
+        double first = 0;
+        double second = 0;
+
+        for (int i = 0; i < sortedNumbers.size() - 1; i++) {
+            double diff = sortedNumbers.get(i + 1) - sortedNumbers.get(i);
+
+            if (diff < minDiff) {
+                minDiff = diff;
+                first = sortedNumbers.get(i);
+                second = sortedNumbers.get(i + 1);
+            }
+        }
+
+        return Arrays.asList(first, second);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Similar adjacent comparison approach after sorting
+
+---
+# Task Java/22 - filterIntegers
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm1b"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter given list of any values only for integers
+    >>> filter_integers(Arrays.asList('a', 3.14, 5))
+    [5]
+    >>> filter_integers(Arrays.asList(1, 2, 3, "abc", Map.of(), List.of()))
+    [1, 2, 3]
+     */
+    public List<Integer> filterIntergers(List<Object> values) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm5t"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter given list of any values only for integers
+    >>> filter_integers(Arrays.asList('a', 3.14, 5))
+    [5]
+    >>> filter_integers(Arrays.asList(1, 2, 3, "abc", Map.of(), List.of()))
+    [1, 2, 3]
+     */
+    public List<Integer> filterIntergers(List<Object> values) {
+        List<Integer> result = new ArrayList<>();
+
+        for (Object value : values) {
+            if (value instanceof Integer) {
+                result.add((Integer) value);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses instanceof checking for integer filtering
+
+---
+
+## Gemini Response
+
+```java id="jlwm8v"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter given list of any values only for integers
+    >>> filter_integers(Arrays.asList('a', 3.14, 5))
+    [5]
+    >>> filter_integers(Arrays.asList(1, 2, 3, "abc", Map.of(), List.of()))
+    [1, 2, 3]
+    */
+    public List<Integer> filterIntergers(List<Object> values) {
+        List<Integer> result = new ArrayList<>();
+
+        if (values == null) {
+            return result;
+        }
+
+        for (Object value : values) {
+            if (value instanceof Integer) {
+                result.add((Integer) value);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes null-list handling before filtering
+
+---
 
 
 
