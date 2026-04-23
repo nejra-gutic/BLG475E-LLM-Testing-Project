@@ -342,3 +342,116 @@ public double truncateNumber(double number) {
 
 ---
 
+# Task Java/3 - belowZero
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="0e4e2v"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> belowZero(Arrays.asList(1, 2, 3))
+    false
+    >>> belowZero(Arrays.asList(1, 2, -4, 5))
+    true
+     */
+    public boolean belowZero(List<Integer> operations) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="o3yvsn"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> belowZero(Arrays.asList(1, 2, 3))
+    false
+    >>> belowZero(Arrays.asList(1, 2, -4, 5))
+    true
+     */
+    public boolean belowZero(List<Integer> operations) {
+        int balance = 0;
+
+        for (int op : operations) {
+            balance += op;
+
+            if (balance < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses enhanced for-loop with cumulative balance tracking
+
+---
+
+## Gemini Response
+
+```java id="afzjlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    You're given a list of deposit and withdrawal operations on a bank account that starts with
+    zero balance. Your task is to detect if at any point the balance of account fallls below zero, and
+    at that point function should return True. Otherwise it should return False.
+    >>> belowZero(Arrays.asList(1, 2, 3))
+    false
+    >>> belowZero(Arrays.asList(1, 2, -4, 5))
+    true
+    */
+    public boolean belowZero(List<Integer> operations) {
+        int balance = 0;
+
+        for (Integer op : operations) {
+            balance += op;
+
+            if (balance < 0) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Similar implementation strategy to ChatGPT with Integer iteration type
+
+---
