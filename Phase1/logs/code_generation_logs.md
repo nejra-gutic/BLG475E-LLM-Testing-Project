@@ -112,3 +112,138 @@ class Solution {
 * Observed issues: Uses sorting-based optimization instead of brute-force comparison
 
 ---
+
+# Task Java/1 - separateParenGroups
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="wdud3e"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separateParenGroups("( ) (( )) (( )( ))")
+    ["()", "(())", "(()())"]
+     */
+    public List<String> separateParenGroups(String paren_string) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="e7f4ak"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separateParenGroups("( ) (( )) (( )( ))")
+    ["()", "(())", "(()())"]
+    */
+    public List<String> separateParenGroups(String paren_string) {
+        List<String> result = new ArrayList<>();
+        StringBuilder current = new StringBuilder();
+        int balance = 0;
+
+        for (int i = 0; i < paren_string.length(); i++) {
+            char c = paren_string.charAt(i);
+
+            if (c == ' ') {
+                continue;
+            }
+
+            if (c == '(') {
+                balance++;
+                current.append(c);
+            } else if (c == ')') {
+                balance--;
+                current.append(c);
+
+                if (balance == 0) {
+                    result.add(current.toString());
+                    current.setLength(0);
+                }
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Explicitly ignores spaces during parsing
+
+---
+
+## Gemini Response
+
+```java id="g3v6n6"
+import java.util.ArrayList;
+import java.util.List;
+
+class Solution {
+    /**
+    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    >>> separateParenGroups("( ) (( )) (( )( ))")
+    ["()", "(())", "(()())"]
+    */
+    public List<String> separateParenGroups(String paren_string) {
+        List<String> result = new ArrayList<>();
+        StringBuilder currentGroup = new StringBuilder();
+        int balance = 0;
+
+        for (char c : paren_string.toCharArray()) {
+            if (c == '(') {
+                balance++;
+                currentGroup.append(c);
+            } else if (c == ')') {
+                balance--;
+                currentGroup.append(c);
+
+                if (balance == 0) {
+                    result.add(currentGroup.toString());
+                    currentGroup.setLength(0);
+                }
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses enhanced for-loop iteration over characters
+
+---
