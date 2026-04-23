@@ -833,6 +833,115 @@ class Solution {
 
 ---
 
+# Task Java/7 - filterBySubstring
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="v5fpkm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter an input list of strings only for ones that contain given substring
+    >>> filterBySubstring(List.of(), "a")
+    []
+    >>> filterBySubstring(Arrays.asList("abc", "bacd", "cde", "array"), "a")
+    ["abc", "bacd", "array"]
+     */
+    public List<String> filterBySubstring(List<String> strings, String substring) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="7p2e7w"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter an input list of strings only for ones that contain given substring
+    >>> filterBySubstring(List.of(), "a")
+    []
+    >>> filterBySubstring(Arrays.asList("abc", "bacd", "cde", "array"), "a")
+    ["abc", "bacd", "array"]
+     */
+    public List<String> filterBySubstring(List<String> strings, String substring) {
+        List<String> result = new ArrayList<>();
+
+        for (String s : strings) {
+            if (s.contains(substring)) {
+                result.add(s);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses straightforward substring filtering approach
+
+---
+
+## Gemini Response
+
+```java id="jlwm3f"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Filter an input list of strings only for ones that contain given substring
+    >>> filterBySubstring(List.of(), "a")
+    []
+    >>> filterBySubstring(Arrays.asList("abc", "bacd", "cde", "array"), "a")
+    ["abc", "bacd", "array"]
+    */
+    public List<String> filterBySubstring(List<String> strings, String substring) {
+        List<String> result = new ArrayList<>();
+
+        if (strings == null || substring == null) {
+            return result;
+        }
+
+        for (String s : strings) {
+            if (s.contains(substring)) {
+                result.add(s);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes additional null-check handling for inputs
+
+---
+
+
 
 
 
