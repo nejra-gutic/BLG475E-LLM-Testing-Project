@@ -1,0 +1,47 @@
+import java.util.;
+import java.lang.;
+
+class Solution {
+/**
+triplesSumToZero takes a list of integers as an input.
+it returns True if there are three distinct elements in the list that
+sum to zero, and False otherwise.
+
+>>> triplesSumToZero(Arrays.asList(1, 3, 5, 0))
+false
+>>> triplesSumToZero(Arrays.asList(1, 3, -2, 1))
+true
+>>> triplesSumToZero(Arrays.asList(1, 2, 3, 7))
+false
+>>> triplesSumToZero(Arrays.asList(2, 4, -5, 3, 9, 7))
+true
+>>> triplesSumToZero(Arrays.asList(1))
+false
+ */
+public boolean triplesSumToZero(List<Integer> l) {
+    if (l == null || l.size() < 3) {
+        return false;
+    }
+
+    List<Integer> sortedList = new ArrayList<>(l);
+    Collections.sort(sortedList);
+
+    for (int i = 0; i < sortedList.size() - 2; i++) {
+        int left = i + 1;
+        int right = sortedList.size() - 1;
+        
+        while (left < right) {
+            int sum = sortedList.get(i) + sortedList.get(left) + sortedList.get(right);
+            if (sum == 0) {
+                return true;
+            } else if (sum < 0) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+    }
+
+    return false;
+}
+}
