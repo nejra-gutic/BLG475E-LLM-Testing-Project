@@ -2339,6 +2339,1232 @@ class Solution {
 
 ---
 
+# Task Java/24 - largestDivisor
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm6m"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largestDivisor(15)
+    5
+     */
+    public int largestDivisor(int n) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm8k"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largestDivisor(15)
+    5
+     */
+    public int largestDivisor(int n) {
+        for (int i = n / 2; i >= 1; i--) {
+            if (n % i == 0) {
+                return i;
+            }
+        }
+
+        return 1;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Optimizes search by starting from n / 2
+
+---
+
+## Gemini Response
+
+```java id="jlwm1p"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    For a given number n, find the largest number that divides n evenly, smaller than n
+    >>> largestDivisor(15)
+    5
+    */
+    public int largestDivisor(int n) {
+        for (int i = n - 1; i >= 1; i--) {
+            if (n % i == 0) {
+                return i;
+            }
+        }
+
+        return 1;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses straightforward reverse iteration from n - 1
+
+---
+# Task Java/25 - factorize
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm7h"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+     */
+    public List<Integer> factorize(int n) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm1f"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+     */
+    public List<Integer> factorize(int n) {
+        List<Integer> factors = new ArrayList<>();
+
+        int divisor = 2;
+
+        while (n > 1) {
+            while (n % divisor == 0) {
+                factors.add(divisor);
+                n /= divisor;
+            }
+
+            divisor++;
+        }
+
+        return factors;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses repeated division approach for prime factorization
+
+---
+
+## Gemini Response
+
+```java id="jlwm5w"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return list of prime factors of given integer in the order from smallest to largest.
+    Each of the factors should be listed number of times corresponding to how many times it appeares in factorization.
+    Input number should be equal to the product of all factors
+    >>> factorize(8)
+    [2, 2, 2]
+    >>> factorize(25)
+    [5, 5]
+    >>> factorize(70)
+    [2, 5, 7]
+    */
+    public List<Integer> factorize(int n) {
+        List<Integer> factors = new ArrayList<>();
+
+        int d = 2;
+
+        while (d * d <= n) {
+            while (n % d == 0) {
+                factors.add(d);
+                n /= d;
+            }
+
+            d++;
+        }
+
+        if (n > 1) {
+            factors.add(n);
+        }
+
+        return factors;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses square-root optimization for factorization
+
+---
+# Task Java/26 - removeDuplicates
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm4u"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> removeDuplicates(Array.asList(1, 2, 3, 2, 4))
+    [1, 3, 4]
+     */
+    public List<Integer> removeDuplicates(List<Integer> numbers) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm1u"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> removeDuplicates(Array.asList(1, 2, 3, 2, 4))
+    [1, 3, 4]
+     */
+    public List<Integer> removeDuplicates(List<Integer> numbers) {
+        Map<Integer, Integer> frequency = new HashMap<>();
+
+        for (int num : numbers) {
+            frequency.put(num, frequency.getOrDefault(num, 0) + 1);
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        for (int num : numbers) {
+            if (frequency.get(num) == 1) {
+                result.add(num);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses frequency counting with HashMap
+
+---
+
+## Gemini Response
+
+```java id="jlwm6x"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    From a list of integers, remove all elements that occur more than once.
+    Keep order of elements left the same as in the input.
+    >>> removeDuplicates(Array.asList(1, 2, 3, 2, 4))
+    [1, 3, 4]
+    */
+    public List<Integer> removeDuplicates(List<Integer> numbers) {
+        if (numbers == null) {
+            return new ArrayList<>();
+        }
+
+        Map<Integer, Long> counts = numbers.stream()
+            .collect(Collectors.groupingBy(
+                n -> n,
+                LinkedHashMap::new,
+                Collectors.counting()
+            ));
+
+        return numbers.stream()
+            .filter(n -> counts.get(n) == 1)
+            .collect(Collectors.toList());
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses Java Streams and groupingBy with LinkedHashMap to preserve order
+
+---
+# Task Java/28 - concatenate
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm5p"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Concatenate list of strings into a single string
+    >>> concatenate(List.of())
+    ""
+    >>> concatenate(Arrays.asList("a", "b", "c"))
+    "abc"
+     */
+    public String concatenate(List<String> strings) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm8e"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Concatenate list of strings into a single string
+    >>> concatenate(List.of())
+    ""
+    >>> concatenate(Arrays.asList("a", "b", "c"))
+    "abc"
+     */
+    public String concatenate(List<String> strings) {
+        StringBuilder result = new StringBuilder();
+
+        for (String s : strings) {
+            result.append(s);
+        }
+
+        return result.toString();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses StringBuilder for efficient concatenation
+
+---
+
+## Gemini Response
+
+```java id="jlwm1r"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Concatenate list of strings into a single string
+    >>> concatenate(List.of())
+    ""
+    >>> concatenate(Arrays.asList("a", "b", "c"))
+    "abc"
+    */
+    public String concatenate(List<String> strings) {
+        if (strings == null || strings.isEmpty()) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (String s : strings) {
+            sb.append(s);
+        }
+
+        return sb.toString();
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes null and empty-list handling
+
+---
+
+# Task Java/30 - getPositive
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="jlwm2f"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    Return only positive numbers in the list.
+    >>> getPositive(Arrays.asList(-1, 2, -4, 5, 6))
+    [2, 5, 6]
+    >>> getPositive(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    [5, 3, 2, 3, 9, 123, 1]
+     */
+    public List<Integer> getPositive(List<Integer> l) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="jlwm5g"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    Return only positive numbers in the list.
+    >>> getPositive(Arrays.asList(-1, 2, -4, 5, 6))
+    [2, 5, 6]
+    >>> getPositive(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    [5, 3, 2, 3, 9, 123, 1]
+     */
+    public List<Integer> getPositive(List<Integer> l) {
+        List<Integer> result = new ArrayList<>();
+
+        for (int num : l) {
+            if (num > 0) {
+                result.add(num);
+            }
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses loop-based filtering approach
+
+---
+
+## Gemini Response
+
+```java id="jlwm8h"
+import java.util.*;
+import java.lang.*;
+import java.util.stream.Collectors;
+
+class Solution {
+    /**
+    Return only positive numbers in the list.
+    >>> getPositive(Arrays.asList(-1, 2, -4, 5, 6))
+    [2, 5, 6]
+    >>> getPositive(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    [5, 3, 2, 3, 9, 123, 1]
+    */
+    public List<Integer> getPositive(List<Integer> l) {
+        return l.stream()
+                .filter(n -> n > 0)
+                .collect(Collectors.toList());
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses Java Stream filtering approach
+
+---
+# Task Java/32 - findZero
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+     */
+    public double poly(List<Double> xs, double x) {
+        double result = 0;
+        for (int i = 0; i < xs.size(); i++) {
+            result += xs.get(i) * Math.pow(x, i);
+        }
+        return result;
+    }
+    
+    /**
+    xs are coefficients of a polynomial.
+    findZero find x such that poly(x) = 0.
+    findZero returns only only zero point, even if there are many.
+    Moreover, findZero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> findZero(Arrays.asList(1, 2)) // f(x) = 1 + 2x
+    -0.5
+    >>> findZero(Arrays.asList(-6, 11, -6, 1)) // (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+     */
+    public double findZero(List<Double> xs) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+     */
+    public double poly(List<Double> xs, double x) {
+        double result = 0;
+        for (int i = 0; i < xs.size(); i++) {
+            result += xs.get(i) * Math.pow(x, i);
+        }
+        return result;
+    }
+    
+    /**
+    xs are coefficients of a polynomial.
+    findZero find x such that poly(x) = 0.
+    findZero returns only only zero point, even if there are many.
+    Moreover, findZero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> findZero(Arrays.asList(1, 2)) // f(x) = 1 + 2x
+    -0.5
+    >>> findZero(Arrays.asList(-6, 11, -6, 1)) // (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+     */
+    public double findZero(List<Double> xs) {
+        double left = -10000.0;
+        double right = 10000.0;
+        double eps = 1e-7;
+
+        while (right - left > eps) {
+            double mid = (left + right) / 2.0;
+            double value = poly(xs, mid);
+
+            if (Math.abs(value) < eps) {
+                return mid;
+            }
+
+            double leftValue = poly(xs, left);
+
+            if ((leftValue < 0 && value > 0) || (leftValue > 0 && value < 0)) {
+                right = mid;
+            } else {
+                left = mid;
+            }
+        }
+
+        return (left + right) / 2.0;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses fixed large bounds and bisection-style search without explicit bracketing expansion
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Evaluates polynomial with coefficients xs at point x.
+    return xs[0] + xs[1] * x + xs[1] * x^2 + .... xs[n] * x^n
+    */
+    public double poly(List<Double> xs, double x) {
+        double result = 0;
+        for (int i = 0; i < xs.size(); i++) {
+            result += xs.get(i) * Math.pow(x, i);
+        }
+        return result;
+    }
+
+    /**
+    xs are coefficients of a polynomial.
+    findZero find x such that poly(x) = 0.
+    findZero returns only only zero point, even if there are many.
+    Moreover, findZero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> findZero(Arrays.asList(1, 2)) // f(x) = 1 + 2x
+    -0.5
+    >>> findZero(Arrays.asList(-6, 11, -6, 1)) // (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+     */
+    public double findZero(List<Double> xs) {
+        double lower = -100.0;
+        double upper = 100.0;
+
+        while (poly(xs, lower) * poly(xs, upper) > 0) {
+            lower *= 2.0;
+            upper *= 2.0;
+        }
+
+        for (int i = 0; i < 100; i++) {
+            double mid = (lower + upper) / 2.0;
+            if (poly(xs, mid) * poly(xs, lower) > 0) {
+                lower = mid;
+            } else {
+                upper = mid;
+            }
+        }
+        return (lower + upper) / 2.0;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses bound expansion plus bisection, which is closer to a robust root-bracketing approach
+
+---
+# Task Java/35 - maxElement
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return maximum element in the list.
+    >>> maxElement(Arrays.asList(1, 2, 3))
+    3
+    >>> maxElement(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    123
+     */
+    public int maxElement(List<Integer> l) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return maximum element in the list.
+    >>> maxElement(Arrays.asList(1, 2, 3))
+    3
+    >>> maxElement(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    123
+     */
+    public int maxElement(List<Integer> l) {
+        int max = l.get(0);
+
+        for (int num : l) {
+            if (num > max) {
+                max = num;
+            }
+        }
+
+        return max;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses iterative comparison to find maximum value
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Return maximum element in the list.
+    >>> maxElement(Arrays.asList(1, 2, 3))
+    3
+    >>> maxElement(Arrays.asList(5, 3, -5, 2, -3, 3, 9, 0, 123, 1, -10))
+    123
+    */
+    public int maxElement(List<Integer> l) {
+        int max = l.get(0);
+
+        for (int i = 1; i < l.size(); i++) {
+            if (l.get(i) > max) {
+                max = l.get(i);
+            }
+        }
+
+        return max;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses indexed traversal for maximum search
+
+---
+# Task Java/37 - sortEven
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sortEven(Arrays.asList(1, 2, 3))
+    [1, 2, 3]
+    >>> sortEven(Arrays.asList(5, 6, 3, 4))
+    [3, 6, 5, 4]
+     */
+    public List<Integer> sortEven(List<Integer> l) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sortEven(Arrays.asList(1, 2, 3))
+    [1, 2, 3]
+    >>> sortEven(Arrays.asList(5, 6, 3, 4))
+    [3, 6, 5, 4]
+     */
+    public List<Integer> sortEven(List<Integer> l) {
+        List<Integer> evenValues = new ArrayList<>();
+
+        for (int i = 0; i < l.size(); i += 2) {
+            evenValues.add(l.get(i));
+        }
+
+        Collections.sort(evenValues);
+
+        List<Integer> result = new ArrayList<>(l);
+        int index = 0;
+
+        for (int i = 0; i < l.size(); i += 2) {
+            result.set(i, evenValues.get(index++));
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Separates even-index elements, sorts them, then reinserts them
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    This function takes a list l and returns a list l' such that
+    l' is identical to l in the odd indicies, while its values at the even indicies are equal
+    to the values of the even indicies of l, but sorted.
+    >>> sortEven(Arrays.asList(1, 2, 3))
+    [1, 2, 3]
+    >>> sortEven(Arrays.asList(5, 6, 3, 4))
+    [3, 6, 5, 4]
+    */
+    public List<Integer> sortEven(List<Integer> l) {
+        List<Integer> evens = new ArrayList<>();
+
+        for (int i = 0; i < l.size(); i += 2) {
+            evens.add(l.get(i));
+        }
+
+        Collections.sort(evens);
+
+        List<Integer> result = new ArrayList<>(l);
+        int evenIdx = 0;
+
+        for (int i = 0; i < l.size(); i += 2) {
+            result.set(i, evens.get(evenIdx++));
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Very similar logic to ChatGPT solution with renamed variables
+
+---
+# Task Java/40 - triplesSumToZero
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    triplesSumToZero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triplesSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> triplesSumToZero(Arrays.asList(1, 3, -2, 1))
+    true
+    >>> triplesSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> triplesSumToZero(Arrays.asList(2, 4, -5, 3, 9, 7))
+    true
+    >>> triplesSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean triplesSumToZero(List<Integer> l) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    triplesSumToZero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triplesSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> triplesSumToZero(Arrays.asList(1, 3, -2, 1))
+    true
+    >>> triplesSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> triplesSumToZero(Arrays.asList(2, 4, -5, 3, 9, 7))
+    true
+    >>> triplesSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean triplesSumToZero(List<Integer> l) {
+        int n = l.size();
+
+        for (int i = 0; i < n; i++) {
+            for (int j = i + 1; j < n; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (l.get(i) + l.get(j) + l.get(k) == 0) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses brute-force triple nested loops
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    triplesSumToZero takes a list of integers as an input.
+    it returns True if there are three distinct elements in the list that
+    sum to zero, and False otherwise.
+
+    >>> triplesSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> triplesSumToZero(Arrays.asList(1, 3, -2, 1))
+    true
+    >>> triplesSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> triplesSumToZero(Arrays.asList(2, 4, -5, 3, 9, 7))
+    true
+    >>> triplesSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean triplesSumToZero(List<Integer> l) {
+        if (l == null || l.size() < 3) {
+            return false;
+        }
+
+        List<Integer> sortedList = new ArrayList<>(l);
+        Collections.sort(sortedList);
+
+        for (int i = 0; i < sortedList.size() - 2; i++) {
+            int left = i + 1;
+            int right = sortedList.size() - 1;
+
+            while (left < right) {
+                int sum = sortedList.get(i)
+                        + sortedList.get(left)
+                        + sortedList.get(right);
+
+                if (sum == 0) {
+                    return true;
+                } else if (sum < 0) {
+                    left++;
+                } else {
+                    right--;
+                }
+            }
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses sorting with two-pointer optimization for better efficiency
+
+---
+# Task Java/43 - pairsSumToZero
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    pairsSumToZero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairsSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 3, -2, 1))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> pairsSumToZero(Arrays.asList(2, 4, -5, 3, 5, 7))
+    true
+    >>> pairsSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean pairsSumToZero(List<Integer> l) {
+```
+
+---
+
+## ChatGPT Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    pairsSumToZero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairsSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 3, -2, 1))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> pairsSumToZero(Arrays.asList(2, 4, -5, 3, 5, 7))
+    true
+    >>> pairsSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean pairsSumToZero(List<Integer> l) {
+        Set<Integer> seen = new HashSet<>();
+
+        for (int num : l) {
+            if (seen.contains(-num)) {
+                return true;
+            }
+            seen.add(num);
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: No null-check for input list
+
+---
+
+## Gemini Response
+
+```java
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    pairsSumToZero takes a list of integers as an input.
+    it returns True if there are two distinct elements in the list that
+    sum to zero, and False otherwise.
+    >>> pairsSumToZero(Arrays.asList(1, 3, 5, 0))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 3, -2, 1))
+    false
+    >>> pairsSumToZero(Arrays.asList(1, 2, 3, 7))
+    false
+    >>> pairsSumToZero(Arrays.asList(2, 4, -5, 3, 5, 7))
+    true
+    >>> pairsSumToZero(Arrays.asList(1))
+    false
+     */
+    public boolean pairsSumToZero(List<Integer> l) {
+        if (l == null || l.size() < 2) {
+            return false;
+        }
+
+        Set<Integer> seen = new HashSet<>();
+
+        for (Integer num : l) {
+            if (seen.contains(-num)) {
+                return true;
+            }
+            seen.add(num);
+        }
+
+        return false;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: None observed
+
+---
 
 
 
