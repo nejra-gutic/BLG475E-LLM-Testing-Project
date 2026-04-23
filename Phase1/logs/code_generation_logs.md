@@ -247,3 +247,98 @@ class Solution {
 * Observed issues: Uses enhanced for-loop iteration over characters
 
 ---
+
+# Task Java/2 - truncateNumber
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="41z20n"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncateNumber(3.5)
+    0.5
+     */
+    public double truncateNumber(double number) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="zjcw65"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    Given a positive floating point number, it can be decomposed into
+    and integer part (largest integer smaller than given number) and decimals
+    (leftover part always smaller than 1).
+
+    Return the decimal part of the number.
+    >>> truncateNumber(3.5)
+    0.5
+     */
+    public double truncateNumber(double number) {
+        return number - Math.floor(number);
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: None yet
+
+---
+
+## Gemini Response
+
+```java id="9u95sq"
+import java.util.;
+import java.lang.;
+
+class Solution {
+/**
+Given a positive floating point number, it can be decomposed into
+and integer part (largest integer smaller than given number) and decimals
+(leftover part always smaller than 1).
+
+Return the decimal part of the number.
+>>> truncateNumber(3.5)
+0.5
+ */
+public double truncateNumber(double number) {
+    return number % 1.0;
+}
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: None yet
+
+---
+
