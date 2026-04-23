@@ -1048,6 +1048,115 @@ class Solution {
 
 ---
 
+# Task Java/9 - rollingMax
+
+## Prompt
+
+Generate a complete Java solution for the following HumanEval task.
+
+Requirements:
+
+* Return only Java code
+* Keep the exact method signature
+* Return a compilable solution
+* Do not include explanations
+
+Task:
+
+```java id="1vjlwm"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rollingMax(Arrays.asList(1, 2, 3, 2, 3, 4, 2))
+    [1, 2, 3, 3, 3, 4, 4]
+     */
+    public List<Integer> rollingMax(List<Integer> numbers) {
+```
+
+---
+
+## ChatGPT Response
+
+```java id="hjlwm8"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rollingMax(Arrays.asList(1, 2, 3, 2, 3, 4, 2))
+    [1, 2, 3, 3, 3, 4, 4]
+     */
+    public List<Integer> rollingMax(List<Integer> numbers) {
+        List<Integer> result = new ArrayList<>();
+        int currentMax = Integer.MIN_VALUE;
+
+        for (int num : numbers) {
+            currentMax = Math.max(currentMax, num);
+            result.add(currentMax);
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Uses Math.max for rolling maximum updates
+
+---
+
+## Gemini Response
+
+```java id="jlwm4y"
+import java.util.*;
+import java.lang.*;
+
+class Solution {
+    /**
+    From a given list of integers, generate a list of rolling maximum element found until given moment
+    in the sequence.
+    >>> rollingMax(Arrays.asList(1, 2, 3, 2, 3, 4, 2))
+    [1, 2, 3, 3, 3, 4, 4]
+    */
+    public List<Integer> rollingMax(List<Integer> numbers) {
+        List<Integer> result = new ArrayList<>();
+
+        if (numbers == null || numbers.isEmpty()) {
+            return result;
+        }
+
+        int currentMax = numbers.get(0);
+
+        for (Integer num : numbers) {
+            if (num > currentMax) {
+                currentMax = num;
+            }
+
+            result.add(currentMax);
+        }
+
+        return result;
+    }
+}
+```
+
+### Notes
+
+* Compilation status: Not tested yet
+* Base test status: Not tested yet
+* Observed issues: Includes explicit null and empty-list handling
+
+---
+
 
 
 
