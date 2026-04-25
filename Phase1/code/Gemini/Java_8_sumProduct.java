@@ -1,5 +1,5 @@
-mport java.util.;
-import java.lang.;
+mport java.util.*;
+import java.lang.*;
 
 class Solution {
 /**
