@@ -1,5 +1,5 @@
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.lang.*;
 
 class Solution {
     /**
@@ -9,7 +9,7 @@ class Solution {
     Ignore any spaces in the input string.
     >>> separateParenGroups("( ) (( )) (( )( ))")
     ["()", "(())", "(()())"]
-    */
+     */
     public List<String> separateParenGroups(String paren_string) {
         List<String> result = new ArrayList<>();
         StringBuilder currentGroup = new StringBuilder();
@@ -22,14 +22,12 @@ class Solution {
             } else if (c == ')') {
                 balance--;
                 currentGroup.append(c);
-
                 if (balance == 0) {
                     result.add(currentGroup.toString());
                     currentGroup.setLength(0);
                 }
             }
         }
-
         return result;
     }
 }
