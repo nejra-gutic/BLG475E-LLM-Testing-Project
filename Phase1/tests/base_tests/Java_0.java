@@ -1,4 +1,7 @@
-public class Main {
+
+import java.util.*;
+import java.lang.*;
+public class Java_0 {
     public static void main(String[] args) {
         Solution s = new Solution();
         List<Boolean> correct = Arrays.asList(
