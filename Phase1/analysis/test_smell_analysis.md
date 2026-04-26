@@ -1,175 +1,104 @@
-Test Smell Analysis - GPT-4
-Findings
-Problem #0: HasCloseElements
+# Test Smell Analysis
 
-Issue: One test method with 5 assertions (hard to know which fails)
-Missing: Tests for empty list, null input, single element
-Test Name: Too vague (testHasCloseElements)
+## General Observation
 
-Problem #1: SeparateParenGroups
+Most base tests work correctly, but many of them have some common test smell problems.
 
-Issue: 4 assertions in one method
-Missing: Empty string test, unmatched parentheses test
-Test Name: Too vague
+The most common issues are:
+- too many assertions in one test
+- vague test names
+- missing edge cases
+- limited input variety
 
-Problem #2: TruncateNumber
+---
 
-Issue: 3 assertions bundled together
-Missing: Zero, negative numbers, large numbers
+## Problem #0 - HasCloseElements
 
-Problem #3: BelowZero
+Problems noticed:
+- 5 assertions inside one test method
+- test name is too generic (`testHasCloseElements`)
+- missing tests for:
+  - empty list
+  - single element
+  - null input
 
-Issue: 6 assertions in one method
-Missing: Single element, null input
+Because several assertions are grouped together, it is harder to understand which case failed.
 
-Problem #4: MeanAbsoluteDeviation
+---
 
-Issue: 3 assertions in one method
-Missing: Empty list, single element, negative numbers
+## Problem #1 - SeparateParenGroups
 
-Problem #5: Intersperse
+Problems noticed:
+- multiple assertions in one test
+- generic test name
+- no test for empty string
+- no invalid parentheses case
 
-Issue: 3 assertions in one method
-Missing: Single element list
+The existing tests cover normal inputs well, but edge cases are missing.
 
-Problem #6: ParseNestedParens
+---
 
-Issue: 3 assertions in one method
-Missing: Empty string, single group
+## Problem #2 - TruncateNumber
 
-Problem #7: FilterBySubstring
+Problems noticed:
+- only positive decimal numbers tested
+- no negative number cases
+- no zero case
+- multiple assertions combined in one test
 
-Issue: 4 assertions in one method
-Missing: Null substring, no matches case
+More boundary cases could improve reliability.
 
-Problem #8: SumProduct
+---
 
-Issue: 5 assertions in one method
-Missing: Null input test
+## Problem #3 - BelowZero
 
-Problem #9: RollingMax
+Problems noticed:
+- too many assertions in one method
+- no null input test
+- no single element test
 
-Issue: 4 assertions in one method
-Good: Covers empty list, increasing, decreasing order
+The test already covers several normal cases, but structure could be cleaner.
 
-Problem #10: MakePalindrome
+---
 
-Issue: 5 assertions in one method
-Good: Covers empty string, single char, already palindrome
+## Problem #4 - MeanAbsoluteDeviation
 
-Problem #11: StringXor
+Problems noticed:
+- only positive values tested
+- no empty list case
+- no single element case
+- several assertions grouped together
 
-Issue: 3 assertions in one method
-Missing: Empty strings, single character
+---
 
-Problem #12: Longest
+## Common Test Smells Found
 
-Issue: 3 assertions in one method
-Good: Covers empty list, single element
+### 1. Assertion Roulette
+Many tests contain several assertions inside one method.  
+When a test fails, it is not immediately clear which input caused the failure.
 
-Problem #13: GCD
+### 2. Vague Test Names
+Most test names are very generic, for example:
+- `testGCD`
+- `testLongest`
+- `testFactorize`
 
-Issue: 4 assertions in one method
-Missing: Zero, negative numbers, equal numbers
+More descriptive names would improve readability.
 
-Problem #14: AllPrefixes
+### 3. Missing Edge Cases
+A lot of tests do not check:
+- empty inputs
+- null values
+- single element inputs
+- boundary values
 
-Issue: 3 assertions in one method
-Good: Covers empty string
+---
 
-Problem #16: CountDistinctCharacters
+## Conclusion
 
-Issue: 5 assertions in one method
-Good: Covers case insensitivity, spaces
+The provided base tests are useful for checking basic functionality, but many of them can be improved.
 
-Problem #18: HowManyTimes
-
-Issue: 4 assertions in one method
-Good: Covers overlapping patterns
-
-Problem #19: SortNumbers
-
-Issue: 4 assertions in one method
-Good: Covers empty string, single number
-
-Problem #20: FindClosestElements
-
-Issue: 4 assertions in one method
-Missing: Duplicate closest elements
-
-Problem #22: FilterIntegers
-
-Issue: 3 assertions in one method
-Good: Covers mixed types, empty list
-
-Problem #24: LargestDivisor
-
-Issue: 5 assertions in one method
-Missing: 1 as edge case, large numbers
-
-Problem #25: Factorize
-
-Issue: 5 assertions in one method
-Good: Covers prime, powers, products
-
-Problem #26: RemoveDuplicates
-
-Issue: 3 assertions in one method
-Good: Covers empty list, no duplicates, with duplicates
-
-Problem #28: Concatenate
-
-Issue: 3 assertions in one method
-Good: Covers empty list
-
-Problem #30: GetPositive
-
-Issue: 3 assertions in one method
-Good: Covers mixed positive/negative, zero
-
-Problem #32: FindZero
-
-Issue: Only 2 assertions (too limited)
-Missing: More test cases
-
-Problem #35: MaxElement
-
-Issue: Only 2 assertions (too limited)
-Missing: Single element, negative numbers
-
-Problem #37: SortEven
-
-Issue: Only 2 assertions (too limited)
-Missing: Single element, empty list
-
-Problem #40: TriplesSumToZero
-
-Issue: 5 assertions in one method
-Good: Covers with/without triplets
-
-Problem #43: PairsSumToZero
-
-Issue: 5 assertions in one method
-Good: Covers with/without pairs
-
-
-Summary
-Main Problems:
-
-All test methods have vague names (testXxx instead of test_empty_array)
-All tests bundle multiple assertions in one method
-Missing edge cases in most tests (empty, null, boundary values)
-
-Test Counts:
-
-Total assertions: ~105 in 30 methods
-Average per method: 3.5 assertions
-Should be: 1 assertion per method = separate tests
-
-Quality:
-
-Good: Use floating-point precision (1e-6)
-Bad: Hard to debug which assertion fails
-Bad: Missing edge cases
-
-Recommendation: Tests need improvement. Split assertions into separate methods and add missing edge cases
+Main improvements:
+- split large tests into smaller focused tests
+- add better test names
+- include more edge cases
