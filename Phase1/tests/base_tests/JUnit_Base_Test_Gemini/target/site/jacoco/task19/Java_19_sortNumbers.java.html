@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Java_19_sortNumbers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">my-project</a> &gt; <a href="index.source.html" class="el_package">task19</a> &gt; <span class="el_source">Java_19_sortNumbers.java</span></div><h1>Java_19_sortNumbers.java</h1><pre class="source lang-java linenums">package task19;
+
+import java.util.*;
+import java.lang.*;
+
+<span class="fc" id="L6">class Solution {</span>
+/**
+Input is a space-delimited string of numberals from 'zero' to 'nine'.
+Valid choices are 'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight' and 'nine'.
+Return the string with numbers sorted from smallest to largest
+&gt;&gt;&gt; sortNumbers(&quot;three one five&quot;)
+&quot;one three five&quot;
+*/
+public String sortNumbers(String numbers) {
+<span class="pc bpc" id="L15" title="1 of 4 branches missed.">if (numbers == null || numbers.isEmpty()) {</span>
+<span class="fc" id="L16">return &quot;&quot;;</span>
+}
+
+<span class="fc" id="L19">    Map&lt;String, Integer&gt; valueMap = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L20">    valueMap.put(&quot;zero&quot;, 0);</span>
+<span class="fc" id="L21">    valueMap.put(&quot;one&quot;, 1);</span>
+<span class="fc" id="L22">    valueMap.put(&quot;two&quot;, 2);</span>
+<span class="fc" id="L23">    valueMap.put(&quot;three&quot;, 3);</span>
+<span class="fc" id="L24">    valueMap.put(&quot;four&quot;, 4);</span>
+<span class="fc" id="L25">    valueMap.put(&quot;five&quot;, 5);</span>
+<span class="fc" id="L26">    valueMap.put(&quot;six&quot;, 6);</span>
+<span class="fc" id="L27">    valueMap.put(&quot;seven&quot;, 7);</span>
+<span class="fc" id="L28">    valueMap.put(&quot;eight&quot;, 8);</span>
+<span class="fc" id="L29">    valueMap.put(&quot;nine&quot;, 9);</span>
+
+<span class="fc" id="L31">    String[] parts = numbers.split(&quot;\\s+&quot;);</span>
+    
+<span class="fc" id="L33">    Arrays.sort(parts, new Comparator&lt;String&gt;() {</span>
+        @Override
+        public int compare(String s1, String s2) {
+<span class="fc" id="L36">            return valueMap.get(s1) - valueMap.get(s2);</span>
+        }
+    });
+
+<span class="fc" id="L40">    return String.join(&quot; &quot;, parts);</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

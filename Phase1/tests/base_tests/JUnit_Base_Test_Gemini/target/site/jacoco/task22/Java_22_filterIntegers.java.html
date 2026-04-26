@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Java_22_filterIntegers.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">my-project</a> &gt; <a href="index.source.html" class="el_package">task22</a> &gt; <span class="el_source">Java_22_filterIntegers.java</span></div><h1>Java_22_filterIntegers.java</h1><pre class="source lang-java linenums">package task22;
+
+import java.util.*;
+import java.lang.*;
+
+<span class="fc" id="L6">class Solution {</span>
+/**
+Filter given list of any values only for integers
+&gt;&gt;&gt; filter_integers(Arrays.asList('a', 3.14, 5))
+[5]
+&gt;&gt;&gt; filter_integers(Arrays.asList(1, 2, 3, &quot;abc&quot;, Map.of(), List.of()))
+[1, 2, 3]
+*/
+public List&lt;Integer&gt; filterIntergers(List&lt;Object&gt; values) {
+<span class="fc" id="L15">List&lt;Integer&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="pc bpc" id="L16" title="1 of 2 branches missed.">if (values == null) {</span>
+<span class="nc" id="L17">return result;</span>
+}
+<span class="fc bfc" id="L19" title="All 2 branches covered.">for (Object value : values) {</span>
+<span class="fc bfc" id="L20" title="All 2 branches covered.">if (value instanceof Integer) {</span>
+<span class="fc" id="L21">result.add((Integer) value);</span>
+}
+<span class="fc" id="L23">}</span>
+<span class="fc" id="L24">return result;</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
