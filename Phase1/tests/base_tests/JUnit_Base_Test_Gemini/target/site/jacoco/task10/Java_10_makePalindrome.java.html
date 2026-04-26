@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Java_10_makePalindrome.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">my-project</a> &gt; <a href="index.source.html" class="el_package">task10</a> &gt; <span class="el_source">Java_10_makePalindrome.java</span></div><h1>Java_10_makePalindrome.java</h1><pre class="source lang-java linenums">package task10;
+
+import java.util.*;
+import java.lang.*;
+
+<span class="fc" id="L6">class Solution {</span>
+/**
+Test if given string is a palindrome
+*/
+public boolean isPalindrome(String string) {
+<span class="fc" id="L11">int i = 0;</span>
+<span class="fc" id="L12">int j = string.length() - 1;</span>
+<span class="fc bfc" id="L13" title="All 2 branches covered.">while (i &lt; j) {</span>
+<span class="fc bfc" id="L14" title="All 2 branches covered.">if (string.charAt(i) != string.charAt(j)) {</span>
+<span class="fc" id="L15">return false;</span>
+}
+<span class="fc" id="L17">i++;</span>
+<span class="fc" id="L18">j--;</span>
+}
+<span class="fc" id="L20">return true;</span>
+}
+
+/**
+Find the shortest palindrome that begins with a supplied string.
+Algorithm idea is simple:
+- Find the longest postfix of supplied string that is a palindrome.
+- Append to the end of the string reverse of a string prefix that comes before the palindromic suffix.
+&gt;&gt;&gt; makePalindrome(&quot;&quot;)
+&quot;&quot;
+&gt;&gt;&gt; makePalindrome(&quot;cat&quot;)
+&quot;catac&quot;
+&gt;&gt;&gt; makePalindrome(&quot;cata&quot;)
+&quot;catac&quot;
+ */
+public String makePalindrome(String string) {
+<span class="pc bpc" id="L36" title="1 of 4 branches missed.">    if (string == null || string.isEmpty()) {</span>
+<span class="fc" id="L37">        return &quot;&quot;;</span>
+    }
+
+<span class="fc" id="L40">    int n = string.length();</span>
+<span class="fc" id="L41">    int longestPalindromeSuffixStart = 0;</span>
+
+<span class="pc bpc" id="L43" title="1 of 2 branches missed.">    for (int i = 0; i &lt; n; i++) {</span>
+<span class="fc bfc" id="L44" title="All 2 branches covered.">        if (isPalindrome(string.substring(i))) {</span>
+<span class="fc" id="L45">            longestPalindromeSuffixStart = i;</span>
+<span class="fc" id="L46">            break;</span>
+        }
+    }
+
+<span class="fc" id="L50">    String prefixToReverse = string.substring(0, longestPalindromeSuffixStart);</span>
+<span class="fc" id="L51">    StringBuilder reversePrefix = new StringBuilder(prefixToReverse).reverse();</span>
+
+<span class="fc" id="L53">    return string + reversePrefix.toString();</span>
+}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>

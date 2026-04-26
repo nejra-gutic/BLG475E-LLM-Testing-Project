@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="tr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Java_1_separateParenGroups.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">my-project</a> &gt; <a href="index.source.html" class="el_package">task1</a> &gt; <span class="el_source">Java_1_separateParenGroups.java</span></div><h1>Java_1_separateParenGroups.java</h1><pre class="source lang-java linenums">package task1;
+
+import java.util.*;
+import java.lang.*;
+
+<span class="fc" id="L6">class Solution {</span>
+    /**
+    Input to this function is a string containing multiple groups of nested parentheses. Your goal is to
+    separate those group into separate strings and return the list of those.
+    Separate groups are balanced (each open brace is properly closed) and not nested within each other
+    Ignore any spaces in the input string.
+    &gt;&gt;&gt; separateParenGroups(&quot;( ) (( )) (( )( ))&quot;)
+    [&quot;()&quot;, &quot;(())&quot;, &quot;(()())&quot;]
+    */
+    public List&lt;String&gt; separateParenGroups(String paren_string) {
+<span class="fc" id="L16">        List&lt;String&gt; result = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L17">        StringBuilder current = new StringBuilder();</span>
+<span class="fc" id="L18">        int balance = 0;</span>
+
+<span class="fc bfc" id="L20" title="All 2 branches covered.">        for (int i = 0; i &lt; paren_string.length(); i++) {</span>
+<span class="fc" id="L21">            char c = paren_string.charAt(i);</span>
+
+<span class="fc bfc" id="L23" title="All 2 branches covered.">            if (c == ' ') {</span>
+<span class="fc" id="L24">                continue;</span>
+            }
+
+<span class="fc bfc" id="L27" title="All 2 branches covered.">            if (c == '(') {</span>
+<span class="fc" id="L28">                balance++;</span>
+<span class="fc" id="L29">                current.append(c);</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">            } else if (c == ')') {</span>
+<span class="fc" id="L31">                balance--;</span>
+<span class="fc" id="L32">                current.append(c);</span>
+
+<span class="fc bfc" id="L34" title="All 2 branches covered.">                if (balance == 0) {</span>
+<span class="fc" id="L35">                    result.add(current.toString());</span>
+<span class="fc" id="L36">                    current.setLength(0);</span>
+                }
+            }
+        }
+
+<span class="fc" id="L41">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
