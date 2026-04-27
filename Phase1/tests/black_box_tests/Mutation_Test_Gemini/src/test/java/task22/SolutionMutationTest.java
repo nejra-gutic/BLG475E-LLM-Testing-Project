@@ -45,4 +45,16 @@ class SolutionMutationTest {
     @Test void mt22_emptyList() {
         assertEquals(List.of(), s.filterIntergers(new ArrayList<>()));
     }
+
+    // Mutation: Integer.MAX_VALUE/MIN_VALUE
+    @Test void mt22_extremeIntegers() {
+        assertEquals(Arrays.asList(Integer.MAX_VALUE, Integer.MIN_VALUE),
+            s.filterIntergers(Arrays.asList(Integer.MAX_VALUE, "str", Integer.MIN_VALUE)));
+    }
+
+    // Mutation: order preserved
+    @Test void mt22_orderPreserved() {
+        assertEquals(Arrays.asList(10, 20, 30),
+            s.filterIntergers(Arrays.asList(10, "a", 20, 3.5, 30)));
+    }
 }

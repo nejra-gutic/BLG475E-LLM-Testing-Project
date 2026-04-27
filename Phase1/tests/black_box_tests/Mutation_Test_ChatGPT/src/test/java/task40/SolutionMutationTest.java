@@ -36,4 +36,20 @@ class SolutionMutationTest {
         // [0, 1, 2] – 0+0+0 requires same element 3 times at same index → false
         assertFalse(s.triplesSumToZero(Arrays.asList(0, 1, 2)));
     }
+
+    // EC – large list with no valid triple
+    @Test void mt40_allPositiveNoZeroSum() {
+        assertFalse(s.triplesSumToZero(Arrays.asList(1, 2, 3, 4, 5, 6, 7)));
+    }
+
+    // BVA – triple at end of list
+    @Test void mt40_tripleAtEnd() {
+        assertTrue(s.triplesSumToZero(Arrays.asList(10, 20, 30, -1, 0, 1)));
+    }
+
+    // Mutation: pairs vs triples confusion
+    @Test void mt40_onlyPairSums() {
+        // 1 + (-1) = 0 but no TRIPLE sums to zero
+        assertFalse(s.triplesSumToZero(Arrays.asList(1, -1, 2, 3)));
+    }
 }

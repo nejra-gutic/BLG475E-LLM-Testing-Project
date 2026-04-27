@@ -35,4 +35,21 @@ class SolutionMutationTest {
     @Test void mt3_singlePositive() {
         assertFalse(s.belowZero(Arrays.asList(10)));
     }
+
+    // BVA – balance = -1 (just below zero)
+    @Test void mt3_justBelowZero() {
+        assertTrue(s.belowZero(Arrays.asList(10, -11)));
+    }
+
+    // Mutation: early-return logic check – goes below then recovers
+    @Test void mt3_belowThenRecovery() {
+        // must return true even though final balance is positive
+        assertTrue(s.belowZero(Arrays.asList(1, -2, 10)));
+    }
+
+    // EC3 – empty list
+    @Test void mt3_emptyList() {
+        assertFalse(s.belowZero(new ArrayList<>()));
+    }
 }
+

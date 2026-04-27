@@ -40,4 +40,20 @@ class SolutionMutationTest {
         List<String> result = s.allPrefixes("xyz");
         assertEquals("x", result.get(0));
     }
+
+    // Mutation: prefixes must be in increasing order
+    @Test void mt14_increasingLengths() {
+        List<String> result = s.allPrefixes("abcde");
+        for (int i = 0; i < result.size() - 1; i++) {
+            assertEquals(result.get(i).length() + 1, result.get(i + 1).length());
+        }
+    }
+
+    // Mutation: each prefix must be a prefix of the input
+    @Test void mt14_eachIsActualPrefix() {
+        String input = "testing";
+        for (String p : s.allPrefixes(input)) {
+            assertTrue(input.startsWith(p));
+        }
+    }
 }

@@ -30,9 +30,20 @@ class SolutionMutationTest {
         assertEquals(1, s.countDistinctCharacters("aAaAaA"));
     }
 
+    // EC – includes spaces
+    @Test void mt16_withSpaces() {
+        // "a b" has 'a', ' ', 'b' → 3 distinct (case-insensitive)
+        assertEquals(3, s.countDistinctCharacters("a b"));
+    }
+
     // BVA – single character
     @Test void mt16_singleChar() {
         assertEquals(1, s.countDistinctCharacters("Z"));
+    }
+
+    // Mutation: count vs set size confusion
+    @Test void mt16_repeatedChars() {
+        assertEquals(3, s.countDistinctCharacters("aaabbbccc"));
     }
 
     // Mutation: mixed case

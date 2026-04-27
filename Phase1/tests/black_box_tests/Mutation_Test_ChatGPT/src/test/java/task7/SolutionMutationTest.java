@@ -43,4 +43,17 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList("hello"),
             s.filterBySubstring(Arrays.asList("hello", "world"), "hello"));
     }
+
+    // Mutation: contains vs startsWith confusion
+    @Test void mt7_substringInMiddle() {
+        assertEquals(Arrays.asList("xyzabc"),
+            s.filterBySubstring(Arrays.asList("xyzabc", "def"), "abc"));
+    }
+
+    // Mutation: check output preserves order
+    @Test void mt7_orderPreserved() {
+        List<String> result = s.filterBySubstring(Arrays.asList("aX", "bX", "cX", "d"), "X");
+        assertEquals(Arrays.asList("aX", "bX", "cX"), result);
+    }
 }
+

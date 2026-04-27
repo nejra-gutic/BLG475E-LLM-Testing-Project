@@ -26,6 +26,16 @@ class SolutionMutationTest {
         assertEquals(88, (int) result.get(3));
     }
 
+    // EC – even-indexed elements must be sorted
+    @Test void mt37_evenIndicesSorted() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(9, 10, 1, 20, 5));
+        List<Integer> result = s.sortEven(input);
+        // Even indices: 9,1,5 → sorted: 1,5,9
+        assertEquals(1, (int) result.get(0));
+        assertEquals(5, (int) result.get(2));
+        assertEquals(9, (int) result.get(4));
+    }
+
     // Mutation: sorting odd-indexed instead of even-indexed
     @Test void mt37_onlyEvenModified() {
         List<Integer> input = new ArrayList<>(Arrays.asList(3, 100, 1, 200));
@@ -39,5 +49,13 @@ class SolutionMutationTest {
     @Test void mt37_twoElements() {
         assertEquals(Arrays.asList(3, 4),
             s.sortEven(new ArrayList<>(Arrays.asList(3, 4))));
+    }
+
+    // EC – all even indices out of order
+    @Test void mt37_reverseEvenIndices() {
+        List<Integer> input = new ArrayList<>(Arrays.asList(5, 0, 3, 0, 1));
+        List<Integer> result = s.sortEven(input);
+        List<Integer> evenVals = Arrays.asList((int) result.get(0), (int) result.get(2), (int) result.get(4));
+        assertEquals(Arrays.asList(1, 3, 5), evenVals);
     }
 }

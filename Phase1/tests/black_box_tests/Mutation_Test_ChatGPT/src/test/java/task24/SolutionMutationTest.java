@@ -38,6 +38,17 @@ class SolutionMutationTest {
         assertEquals(5, result);
     }
 
+    // Mutation: smallest divisor vs largest divisor
+    @Test void mt24_largestNotSmallest() {
+        // 12: divisors < 12 are 1,2,3,4,6 → largest = 6
+        assertEquals(6, s.largestDivisor(12));
+    }
+
+    // EC – even number
+    @Test void mt24_evenNumber() {
+        assertEquals(50, s.largestDivisor(100));
+    }
+
     // Mutation: loop boundary (check i starting from n/2)
     @Test void mt24_largePrime() {
         assertEquals(1, s.largestDivisor(101));

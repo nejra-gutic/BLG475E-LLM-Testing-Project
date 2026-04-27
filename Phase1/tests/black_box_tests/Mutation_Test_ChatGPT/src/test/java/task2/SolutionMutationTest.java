@@ -34,4 +34,17 @@ class SolutionMutationTest {
     @Test void mt2_exactOne() {
         assertEquals(0.0, s.truncateNumber(1.0), 1e-6);
     }
+
+    // EC5 – very large number with small decimal
+    @Test void mt2_largeNumber() {
+        assertEquals(0.001, s.truncateNumber(999999.001), 1e-4);
+    }
+
+    // Mutation: subtraction vs modulo – both should agree for positive numbers
+    @Test void mt2_standardCase() {
+        assertEquals(0.5, s.truncateNumber(3.5), 1e-6);
+        assertEquals(0.33, s.truncateNumber(1.33), 1e-6);
+        assertEquals(0.456, s.truncateNumber(123.456), 1e-6);
+    }
 }
+

@@ -31,4 +31,22 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList("(((())))"), s.separateParenGroups("(((())))"));
     }
 
+    // Multiple groups – check count mutation (off-by-one)
+    @Test void mt1_countGroups() {
+        List<String> result = s.separateParenGroups("() () ()");
+        assertEquals(3, result.size());
+    }
+
+    // Spaces inside groups – content must be stripped
+    @Test void mt1_spacesInsideGroups() {
+        List<String> result = s.separateParenGroups("( ) (( ))");
+        assertEquals(Arrays.asList("()", "(())"), result);
+    }
+
+    // Mutation: consecutive groups without space
+    @Test void mt1_adjacentGroups() {
+        // Depending on implementation – at minimum must not throw
+        assertDoesNotThrow(() -> s.separateParenGroups("()()"));
+    }
 }
+

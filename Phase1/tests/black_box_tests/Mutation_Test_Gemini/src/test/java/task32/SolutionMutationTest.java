@@ -22,6 +22,17 @@ class SolutionMutationTest {
         assertEquals(1.0, s.findZero(Arrays.asList(-1.0, 1.0)), 1e-4);
     }
 
+    // Mutation: result must actually be a zero (f(result) ≈ 0)
+    @Test void mt32_resultIsActualZero() {
+        List<Double> coeffs = Arrays.asList(-6.0, 11.0, -6.0, 1.0);
+        double root = s.findZero(coeffs);
+        double val = 0;
+        for (int i = 0; i < coeffs.size(); i++) {
+            val += coeffs.get(i) * Math.pow(root, i);
+        }
+        assertEquals(0.0, val, 1e-3);
+    }
+
     // BVA – simple positive linear: 1x + 0 = 0 → root = 0
     @Test void mt32_rootAtZero() {
         assertEquals(0.0, s.findZero(Arrays.asList(0.0, 1.0)), 1e-4);

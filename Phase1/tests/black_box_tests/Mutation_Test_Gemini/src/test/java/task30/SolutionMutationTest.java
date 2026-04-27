@@ -36,4 +36,20 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList(3, 1, 4, 2),
             s.getPositive(Arrays.asList(-5, 3, -2, 1, 4, -9, 2)));
     }
+
+    // EC – all positive
+    @Test void mt30_allPositive() {
+        assertEquals(Arrays.asList(1, 2, 3), s.getPositive(Arrays.asList(1, 2, 3)));
+    }
+
+    // EC – all negative
+    @Test void mt30_allNegative() {
+        assertEquals(List.of(), s.getPositive(Arrays.asList(-1, -2, -3)));
+    }
+
+    // BVA – Integer.MAX_VALUE is positive
+    @Test void mt30_maxValue() {
+        assertEquals(Arrays.asList(Integer.MAX_VALUE),
+            s.getPositive(Arrays.asList(-1, Integer.MAX_VALUE)));
+    }
 }

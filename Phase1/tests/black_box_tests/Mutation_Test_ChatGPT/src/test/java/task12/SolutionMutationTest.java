@@ -40,4 +40,14 @@ class SolutionMutationTest {
     @Test void mt12_longestLast() {
         assertEquals("zzzzz", s.longest(Arrays.asList("b", "cc", "zzzzz")).get());
     }
+
+    // EC – empty list returns empty Optional
+    @Test void mt12_emptyList() {
+        assertTrue(s.longest(List.of()).isEmpty());
+    }
+
+    // Mutation: length comparison off-by-one
+    @Test void mt12_nearEqualLengths() {
+        assertEquals("ab", s.longest(Arrays.asList("a", "ab")).get());
+    }
 }

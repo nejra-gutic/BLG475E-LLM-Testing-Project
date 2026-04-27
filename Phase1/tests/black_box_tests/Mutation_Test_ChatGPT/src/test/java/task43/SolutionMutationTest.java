@@ -41,4 +41,23 @@ class SolutionMutationTest {
     @Test void mt43_singleZero() {
         assertFalse(s.pairsSumToZero(Arrays.asList(0, 1, 2)));
     }
+
+    // Mutation: triple vs pair (tripling sums to zero but no pair does)
+    @Test void mt43_tripleNotPair() {
+        // -1+0+1=0 but no pair: (-1,0)=-1, (-1,1)=0 → actually true
+        assertTrue(s.pairsSumToZero(Arrays.asList(-1, 0, 1)));
+    }
+
+    // EC – large list with pair at non-obvious positions
+    @Test void mt43_pairInMiddle() {
+        assertTrue(s.pairsSumToZero(Arrays.asList(10, 20, -20, 30, 40)));
+    }
+
+    // Mutation: commutativity — (a+b)=0 same as (b+a)=0
+    @Test void mt43_orderIndependence() {
+        assertEquals(
+            s.pairsSumToZero(Arrays.asList(-5, 1, 2, 3, 5)),
+            s.pairsSumToZero(Arrays.asList(5, 3, 2, 1, -5))
+        );
+    }
 }

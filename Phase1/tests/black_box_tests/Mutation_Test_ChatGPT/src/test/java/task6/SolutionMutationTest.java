@@ -31,4 +31,18 @@ class SolutionMutationTest {
         // (()()) has max depth 2, not 1
         assertEquals(Arrays.asList(2), s.parseNestedParens("(()())"));
     }
+
+    // Mutation: off-by-one in group count
+    @Test void mt6_multipleGroupsCount() {
+        List<Integer> result = s.parseNestedParens("() () () ()");
+        assertEquals(4, result.size());
+    }
+
+    // Mutation: single group should produce list of size 1
+    @Test void mt6_singleGroup() {
+        List<Integer> result = s.parseNestedParens("((()))");
+        assertEquals(1, result.size());
+        assertEquals(3, (int) result.get(0));
+    }
 }
+

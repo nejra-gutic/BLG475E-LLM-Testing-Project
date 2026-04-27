@@ -35,4 +35,15 @@ class SolutionMutationTest {
         String result = s.sortNumbers("nine zero five");
         assertEquals("zero five nine", result);
     }
+
+    // Mutation: word mapping wrong (e.g. "seven" sorted to wrong position)
+    @Test void mt19_allTenDigits() {
+        assertEquals("zero one two three four five six seven eight nine",
+            s.sortNumbers("nine eight seven six five four three two one zero"));
+    }
+
+    // BVA – two words
+    @Test void mt19_twoWords() {
+        assertEquals("one two", s.sortNumbers("two one"));
+    }
 }

@@ -30,6 +30,18 @@ class SolutionMutationTest {
         assertEquals(1, s.greatestCommonDivisor(13, 17));
     }
 
+    // Mutation: symmetry (GCD is commutative)
+    @Test void mt13_commutative() {
+        assertEquals(s.greatestCommonDivisor(12, 8), s.greatestCommonDivisor(8, 12));
+    }
+
+    // Mutation: LCM confusion – GCD must be <= both inputs
+    @Test void mt13_resultNotLargerThanInputs() {
+        int a = 15, b = 25;
+        int gcd = s.greatestCommonDivisor(a, b);
+        assertTrue(gcd <= a && gcd <= b);
+    }
+
     // EC – large numbers
     @Test void mt13_largeNumbers() {
         assertEquals(100, s.greatestCommonDivisor(100, 1000));

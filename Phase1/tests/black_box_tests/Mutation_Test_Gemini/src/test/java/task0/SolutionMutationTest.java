@@ -36,4 +36,26 @@ class SolutionMutationTest {
     @Test void mt0_justBelowThreshold() {
         assertTrue(s.hasCloseElements(Arrays.asList(1.0, 1.09), 0.1));
     }
+
+    // Mutation: swap operands – still should detect closeness
+    @Test void mt0_orderIndependence() {
+        assertTrue(s.hasCloseElements(Arrays.asList(5.0, 1.0, 1.09), 0.1));
+    }
+
+    // EC6 – negative threshold (implementation-defined; at minimum must not crash)
+    @Test void mt0_negativeThreshold() {
+        assertDoesNotThrow(() -> s.hasCloseElements(Arrays.asList(1.0, 2.0), -1.0));
+    }
+
+    // Empty list stays false regardless of threshold
+    @Test void mt0_emptyList() {
+        assertFalse(s.hasCloseElements(new ArrayList<>(), 0.5));
+    }
+
+    // Large list – mutant that uses wrong index comparison
+    @Test void mt0_largeList() {
+        List<Double> nums = new ArrayList<>();
+        for (int i = 0; i < 100; i++) nums.add((double) i * 10);
+        assertFalse(s.hasCloseElements(nums, 5.0));
+    }
 }

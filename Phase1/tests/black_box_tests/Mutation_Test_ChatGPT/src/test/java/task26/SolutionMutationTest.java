@@ -43,4 +43,16 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList(3, 7, 1),
             s.removeDuplicates(Arrays.asList(3, 2, 7, 2, 1)));
     }
+
+    // EC – no duplicates at all
+    @Test void mt26_noDuplicates() {
+        assertEquals(Arrays.asList(1, 2, 3, 4, 5),
+            s.removeDuplicates(Arrays.asList(1, 2, 3, 4, 5)));
+    }
+
+    // Mutation: negative numbers
+    @Test void mt26_negativeNumbers() {
+        assertEquals(Arrays.asList(-3),
+            s.removeDuplicates(Arrays.asList(-1, -1, -3)));
+    }
 }

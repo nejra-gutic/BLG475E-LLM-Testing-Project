@@ -41,4 +41,16 @@ class SolutionMutationTest {
         assertEquals("1", s.stringXor("0", "1"));
         assertEquals("1", s.stringXor("1", "0"));
     }
+
+    // Mutation: output length must equal input length
+    @Test void mt11_outputLength() {
+        String result = s.stringXor("110100", "010101");
+        assertEquals(6, result.length());
+    }
+
+    // Mutation: commutativity (XOR is commutative)
+    @Test void mt11_commutative() {
+        assertEquals(s.stringXor("101010", "110011"),
+                     s.stringXor("110011", "101010"));
+    }
 }

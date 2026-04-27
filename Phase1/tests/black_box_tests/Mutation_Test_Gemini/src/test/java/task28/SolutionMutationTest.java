@@ -36,4 +36,21 @@ class SolutionMutationTest {
     @Test void mt28_emptyStringsInList() {
         assertEquals("ab", s.concatenate(Arrays.asList("", "a", "", "b", "")));
     }
+
+    // BVA – result length = sum of element lengths
+    @Test void mt28_correctLength() {
+        List<String> input = Arrays.asList("abc", "de", "f");
+        assertEquals(6, s.concatenate(input).length());
+    }
+
+    // Mutation: order matters
+    @Test void mt28_orderMatters() {
+        assertNotEquals(s.concatenate(Arrays.asList("a", "b")),
+                        s.concatenate(Arrays.asList("b", "a")));
+    }
+
+    // EC – all empty strings
+    @Test void mt28_allEmptyStrings() {
+        assertEquals("", s.concatenate(Arrays.asList("", "", "")));
+    }
 }

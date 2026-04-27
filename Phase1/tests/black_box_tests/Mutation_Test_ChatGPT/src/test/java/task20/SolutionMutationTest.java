@@ -29,8 +29,23 @@ class SolutionMutationTest {
         assertTrue(result.get(0) <= result.get(1));
     }
 
+    // Mutation: pair is not the globally closest
+    @Test void mt20_globallyClosest() {
+        // closest pair in [1,2,10,11] is (10,11) with distance 1
+        assertEquals(Arrays.asList(10.0, 11.0),
+            s.findClosestElements(Arrays.asList(1.0, 2.0, 10.0, 11.0)));
+    }
+
     // Mutation: returns single element instead of pair
     @Test void mt20_returnsPair() {
         assertEquals(2, s.findClosestElements(Arrays.asList(1.0, 2.0, 3.0)).size());
+    }
+
+    // BVA – all elements equally spaced
+    @Test void mt20_equallySpaced() {
+        List<Double> result = s.findClosestElements(Arrays.asList(0.0, 1.0, 2.0, 3.0));
+        // Any adjacent pair is valid; distance should be 1.0
+        double dist = Math.abs(result.get(1) - result.get(0));
+        assertEquals(1.0, dist, 1e-6);
     }
 }

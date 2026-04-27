@@ -25,6 +25,12 @@ class SolutionMutationTest {
         assertEquals(1, s.howManyTimes("abc", "abc"));
     }
 
+    // Mutation: non-overlapping vs overlapping (test overlapping case)
+    @Test void mt18_overlapping() {
+        // "aaa" contains "aa" twice (positions 0 and 1) – overlapping
+        assertEquals(2, s.howManyTimes("aaa", "aa"));
+    }
+
     // BVA – substring at start only
     @Test void mt18_atStart() {
         assertEquals(1, s.howManyTimes("abcdef", "abc"));
@@ -33,6 +39,12 @@ class SolutionMutationTest {
     // BVA – substring at end only
     @Test void mt18_atEnd() {
         assertEquals(1, s.howManyTimes("abcdef", "def"));
+    }
+
+    // Mutation: off-by-one in search
+    @Test void mt18_consecutiveOccurrences() {
+        // "abab" contains "ab" at positions 0 and 2 → 2 times
+        assertEquals(2, s.howManyTimes("abab", "ab"));
     }
 
     // BVA – single character substring

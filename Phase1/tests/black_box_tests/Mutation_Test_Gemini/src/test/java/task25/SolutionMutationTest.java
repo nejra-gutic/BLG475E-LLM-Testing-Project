@@ -27,6 +27,22 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList(2), s.factorize(2));
     }
 
+    // Mutation: result must multiply back to n
+    @Test void mt25_productEqualsN() {
+        int n = 60;
+        List<Integer> factors = s.factorize(n);
+        int product = 1;
+        for (int f : factors) product *= f;
+        assertEquals(n, product);
+    }
+
+    // Mutation: all factors must be prime
+    @Test void mt25_allFactorsPrime() {
+        for (int f : s.factorize(360)) {
+            assertTrue(isPrime(f), f + " is not prime");
+        }
+    }
+
     // BVA – n = power of 2
     @Test void mt25_powerOfTwo() {
         assertEquals(Arrays.asList(2, 2, 2, 2), s.factorize(16));

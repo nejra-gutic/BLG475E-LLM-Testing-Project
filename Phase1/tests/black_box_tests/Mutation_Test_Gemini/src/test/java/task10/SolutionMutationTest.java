@@ -41,4 +41,16 @@ class SolutionMutationTest {
         String result = s.makePalindrome(input);
         assertTrue(result.startsWith(input));
     }
+
+    // Mutation: result must be a palindrome
+    @Test void mt10_resultIsPalindrome() {
+        String result = s.makePalindrome("abcde");
+        assertEquals(result, new StringBuilder(result).reverse().toString());
+    }
+
+    // Mutation: shorter-than-necessary result (check minimality)
+    @Test void mt10_minimalLength() {
+        // "aab" → shortest palindrome starting with "aab" is "aabaa"
+        assertEquals("aabaa", s.makePalindrome("aab"));
+    }
 }

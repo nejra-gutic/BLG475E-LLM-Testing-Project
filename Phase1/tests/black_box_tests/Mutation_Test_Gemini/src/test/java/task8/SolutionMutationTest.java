@@ -27,8 +27,21 @@ class SolutionMutationTest {
         assertEquals(Arrays.asList(0, 0), s.sumProduct(Arrays.asList(0, 0, 0)));
     }
 
+    // Mutation: initial product = 0 instead of 1
+    @Test void mt8_emptyProductIsOne() {
+        assertEquals(Arrays.asList(0, 1), s.sumProduct(List.of()));
+    }
+
+    // Mutation: sum and product swapped in return
+    @Test void mt8_sumFirst() {
+        List<Integer> result = s.sumProduct(Arrays.asList(2, 3));
+        assertEquals(5, (int) result.get(0)); // sum
+        assertEquals(6, (int) result.get(1)); // product
+    }
+
     // BVA – two negatives (product positive, sum negative)
     @Test void mt8_twoNegatives() {
         assertEquals(Arrays.asList(-4, 4), s.sumProduct(Arrays.asList(-2, -2)));
     }
 }
+

@@ -39,4 +39,15 @@ class SolutionMutationTest {
             assertTrue(result.get(i) >= result.get(i - 1));
         }
     }
+
+    // Mutation: output size must equal input size
+    @Test void mt9_outputSizeEqualsInput() {
+        List<Integer> input = Arrays.asList(4, 1, 7, 2, 9);
+        assertEquals(input.size(), s.rollingMax(input).size());
+    }
+
+    // Mutation: wrong comparison (< instead of <=)
+    @Test void mt9_equalConsecutiveElements() {
+        assertEquals(Arrays.asList(4, 4, 4), s.rollingMax(Arrays.asList(4, 4, 4)));
+    }
 }

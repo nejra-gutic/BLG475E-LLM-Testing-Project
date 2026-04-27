@@ -21,6 +21,11 @@ class SolutionMutationTest {
         assertEquals(7, s.maxElement(Arrays.asList(7, 7, 7)));
     }
 
+    // EC – all negative numbers
+    @Test void mt35_allNegative() {
+        assertEquals(-1, s.maxElement(Arrays.asList(-5, -1, -3)));
+    }
+
     // BVA – max at beginning
     @Test void mt35_maxAtStart() {
         assertEquals(100, s.maxElement(Arrays.asList(100, 1, 2, 3)));
@@ -42,5 +47,10 @@ class SolutionMutationTest {
     @Test void mt35_twoElements() {
         assertEquals(5, s.maxElement(Arrays.asList(3, 5)));
         assertEquals(5, s.maxElement(Arrays.asList(5, 3)));
+    }
+
+    // EC – includes Integer.MIN_VALUE
+    @Test void mt35_withMinValue() {
+        assertEquals(0, s.maxElement(Arrays.asList(Integer.MIN_VALUE, 0)));
     }
 }
